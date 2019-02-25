@@ -1,0 +1,54 @@
+<HTML>
+<HEAD>
+<TITLE> XML로 셀렉트 박스 만들기</TITLE>
+<SCRIPT LANGUAGE="JavaScript">
+<!--
+	function XmlLoad(){
+		var xml = new ActiveXObject("Microsoft.XMLDOM");//xml 객체 생성
+		xml.async=false; //몰라;;
+		xml.load("test.xml");//xml파일 로드
+		no = xml.getElementsByTagName("name").length;//name 노드의 갯수 구하기
+		this.text = new Array(no);//배열에 저장
+		this.value = new Array(no);
+		for(i=0;i<no;i++)
+		{
+			this.text[i] = xml.getElementsByTagName("name").item(i).text;//배열에 name노드의 text값 넣기
+			this.value[i] = xml.getElementsByTagName("name/@value").item(i).text;//배열에 name노드의 속성(value)의 text값 넣기
+		}		
+	}
+	function CreatSelect(){
+		CS = new XmlLoad();//객체 생성
+		cnt = CS.text.length;//text 배열의 갯수 구하기
+		var frm = document.frm;
+		for(i=0;i<cnt;i++)//돌면서 셀렉트 박스 생성
+		{
+			selCnt=frm.kk.options.length;frm.kk.options.length++; 
+		        frm.kk.options[selCnt].text=CS.text[i]; //text값
+	                frm.kk.options[selCnt].value=CS.value[i];//value값
+		}
+	}
+
+	function select_value(){
+		var frm = document.frm.kk
+		no = frm.options[document.frm.kk.selectedIndex].value;//value값 확인
+		alert(no);
+	}
+
+//-->
+</SCRIPT>
+</HEAD>
+
+<BODY>
+<form name="frm">
+<select name="kk"  onchange="select_value();"> 
+        <option>--대분류--</option> 
+</select> 
+</BODY>
+</form>
+</HTML>
+
+<SCRIPT LANGUAGE="JavaScript">
+<!--
+	CreatSelect();
+//-->
+</SCRIPT>
