@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="euc-kr"?>
+<root>
+<index  code="A" text="게임">
+        <itemA code="AA" text="온라인 게임" />
+        <itemA code="AB" text="비디오 게임" />
+        <itemA code="AC" text="PC 게임" />
+        <itemA code="AD" text="게임 매거진"/>
+        <itemA code="AE" text="일반 게임" />
+</index>
+<index code="B" text="만화/애니">
+        <itemB code="BA" text="일본만화/애니" />
+        <itemB code="BB" text="한국만화/애니" />
+        <itemB code="BC" text="순정" />
+        <itemB code="BD" text="무협" />
+        <itemB code="BE" text="코믹" />
+        <itemB code="BF" text="작가" />
+        <itemB code="BG" text="창작" />
+        <itemB code="BH" text="만화일반" />
+</index>
+</root>

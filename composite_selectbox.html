@@ -1,0 +1,63 @@
+<html>
+<body>
+<SCRIPT LANGUAGE="JavaScript"> 
+var xmlDoc; 
+xmlDoc = new ActiveXObject("Microsoft.XMLDOM"); 
+xmlDoc.async=false; 
+//셀렉트 DB 로드 
+xmlDoc.load("./themecate.xml"); 
+
+function themeCate_Load(){ 
+	//대분류 인덱스 값 정리하기 
+	cnt=xmlDoc.getElementsByTagName("index").length; 
+	this.text=new Array(cnt); 
+	this.code=new Array(cnt); 
+	for(i=0;i<cnt;i++){ 
+		this.code[i]=xmlDoc.getElementsByTagName("index/@code").item(i).text; 
+		this.text[i]=xmlDoc.getElementsByTagName("index/@text").item(i).text; 
+	} 
+} 
+
+//대분류 카테리스트 출력 
+function themeCate_List() { 
+	//대분류 리스트 객체 반환 
+	themeSel=new themeCate_Load(); 
+	cnt=themeSel.code.length; 
+	for(i=0;i<cnt;i++) { 
+		selCnt=opt.options.length;opt.options.length++; 
+		opt.options[selCnt].text=themeSel.text[i]; 
+		opt.options[selCnt].value=themeSel.code[i]; 
+	} 
+} 
+
+//소분류 셀렉트 출력 
+function themeCate_Change(t) { 
+	//이전 소분류셀렉 초기화 
+	opt2.options.length=1; 
+	//선택된 대분류의 코드값을 가진 소분류 리스트를 가져온다. 
+	sel=t.selectedIndex; 
+	code=t.options[sel].value; 
+	tree=xmlDoc.getElementsByTagName("item"+code+"/@text"); 
+	cnt=tree.length-1; 
+	for(i=0;i<=cnt;i++){ 
+		selCnt=opt2.options.length++; 
+		opt2.options[selCnt].text=tree.item(i).text; 
+	} 
+} 
+</SCRIPT> 
+
+<!--대분류셀렉트--> 
+<select name="opt" onchange="themeCate_Change(this)"> 
+	<option>--대분류--</option> 
+</select> 
+
+<!--소분류셀렉트--> 
+<select name="opt2"> 
+	<option>--소분류--</option> 
+</select> 
+
+<!--대분류셀렉트 목록 출력--> 
+<script>themeCate_List()</script>
+
+</body>
+</html>
